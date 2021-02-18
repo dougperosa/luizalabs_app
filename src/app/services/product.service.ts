@@ -10,7 +10,7 @@ import { map } from 'rxjs/operators';
 })
 export class ProductService {
 
-  private api = 'http://apptesteluizalabs.com.br/';
+  private api = 'https://newluizalabsapi.herokuapp.com/';
 
   constructor(private http: HttpClient) { }
 
