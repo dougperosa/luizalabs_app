@@ -40,8 +40,8 @@ export class ProductDetailsPage implements OnInit {
     window.open(this.information.Website, '_blank');
   }
 
-  getFormattedPrice(price) {
-    return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(price);
+  getFormattedPrice(value: number) {
+    return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value);
   }
 
   editProduct() {
