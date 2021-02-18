@@ -10,7 +10,7 @@ import { map } from 'rxjs/operators';
 })
 export class ProductService {
 
-  private api = 'http://localhost:3000/';
+  private api = 'http://apptesteluizalabs.com.br/';
 
   constructor(private http: HttpClient) { }
 
