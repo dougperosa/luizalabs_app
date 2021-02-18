@@ -23,17 +23,16 @@ export class ProductDetailsPage implements OnInit {
   constructor(private activatedRoute: ActivatedRoute, private productService: ProductService, private alertController: AlertController, private location: Location) { }
 
   ngOnInit() {
-
-  }
-
-  ionViewDidEnter(){
     this.productService.getDetails(this.id).subscribe(result => {
       this.information = result;
       this.title = this.information.title;
       this.category = this.information.category;
       this.description = this.information.description;
-      this.price = this.getFormattedPrice(this.information.price).replace('R$','');
+      this.price = this.getFormattedPrice(this.information.price).replace('R$', '');
     });
+  }
+
+  ionViewDidEnter() {    
   }
 
   openWebsite() {
@@ -45,17 +44,39 @@ export class ProductDetailsPage implements OnInit {
   }
 
   editProduct() {
-    const data: any = {
-      id: this.id,
-      title: this.title,
-      category: this.category,
-      description: this.description,
-      price: this.price.replace('.','').replace(',','.'),
-      active: true
-    };
+    if (this.title != null && this.category != null && this.description != null && this.price != null) {
+      const data: any = {
+        id: this.id,
+        title: this.title,
+        category: this.category,
+        description: this.description,
+        price: this.price.replace('.', '').replace(',', '.'),
+        active: true
+      };
 
-    this.productService.updateProduct(data).subscribe();    
-    this.location.back();
+      this.productService.updateProduct(data).subscribe();
+      this.alertConfirm("Sucesso", "Cadastro alterado com sucesso!", true);
+    } else {
+      this.alertConfirm("Ops", "Preencha todos os campos para efetuar o cadastro!", false);
+    }
+  }
+
+  async alertConfirm(subtitle: string, msg: string, success: boolean) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: subtitle,
+      message: msg,
+      buttons: [{
+        text: 'OK',
+        handler: () => {
+          if (success) {
+            this.location.back();
+          }
+        }
+      }]
+    });
+
+    await alert.present();
   }
 
   async alertConfirmDelete() {
@@ -73,7 +94,7 @@ export class ProductDetailsPage implements OnInit {
           text: 'Confirmar',
           handler: () => {
             this.productService.deleteProduct(this.id).subscribe();
-            this.location.back();
+            this.alertConfirm("Sucesso", "Cadastro deletado com sucesso!", true);
           }
         }
       ]
