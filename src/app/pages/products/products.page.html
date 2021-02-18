@@ -8,10 +8,10 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        <ion-searchbar [(ngModel)]="searchTitle" (ionChange)="searchChanged($event)"></ion-searchbar>
+        <ion-searchbar [(ngModel)]="searchTitle" (ionChange)="searchChanged()"></ion-searchbar>
       </ion-col>
       <ion-col>
-        <ion-select [(ngModel)]="searchCategory" (ionChange)="searchChanged($event)">
+        <ion-select [(ngModel)]="searchCategory" (ionChange)="searchChanged()">
           <ion-select-option value="">Todas as categorias</ion-select-option>          
           <ion-select-option value="Acessórios">Acessórios</ion-select-option>         
           <ion-select-option value="Celulares">Celulares</ion-select-option>
