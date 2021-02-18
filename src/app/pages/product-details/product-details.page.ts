@@ -18,7 +18,7 @@ export class ProductDetailsPage implements OnInit {
   public title = null;
   public category = null;
   public description = null;
-  public price = null;
+  public price;
 
   constructor(private activatedRoute: ActivatedRoute, private productService: ProductService, private alertController: AlertController, private location: Location) { }
 
