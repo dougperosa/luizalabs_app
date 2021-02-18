@@ -11,8 +11,8 @@ export class ProductsPage implements OnInit {
 
   results: Observable<any>;
 
-  public searchTitle = "";
-  public searchCategory = "";
+  public searchTitle = null;
+  public searchCategory = null;
 
   constructor(private productService: ProductService) {
   }
@@ -30,11 +30,11 @@ export class ProductsPage implements OnInit {
   }
 
   searchChanged() {
-    if (this.searchTitle != "" && this.searchCategory != "") {
+    if (this.searchTitle != null && this.searchCategory != null) {
       this.results = this.productService.readProductsByAllFilters(this.searchTitle, this.searchCategory);
-    } else if (this.searchTitle != "") {
+    } else if (this.searchTitle != null) {
       this.results = this.productService.readProductsByTitle(this.searchTitle);
-    } else if (this.searchCategory != "") {
+    } else if (this.searchCategory != null) {
       this.results = this.productService.readProductsByCategory(this.searchCategory);
     } else {
       this.results = this.productService.readProducts();
