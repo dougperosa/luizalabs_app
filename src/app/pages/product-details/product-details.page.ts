@@ -18,7 +18,7 @@ export class ProductDetailsPage implements OnInit {
   public title = null;
   public category = null;
   public description = null;
-  public price;
+  public price = null;
 
   constructor(private activatedRoute: ActivatedRoute, private productService: ProductService, private alertController: AlertController, private location: Location) { }
 
@@ -28,7 +28,7 @@ export class ProductDetailsPage implements OnInit {
       this.title = this.information.title;
       this.category = this.information.category;
       this.description = this.information.description;
-      // this.price = this.information.price;
+      this.price = this.getFormattedPrice(this.information.price).replace('R$', '');
     });
   }
 
@@ -40,9 +40,9 @@ export class ProductDetailsPage implements OnInit {
     window.open(this.information.Website, '_blank');
   }
 
-  // getFormattedPrice(price: number) {
-  //   return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(price);
-  // }
+  getFormattedPrice(price: number) {
+    return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(price);
+  }
 
   editProduct() {
     if (this.title != null && this.category != null && this.description != null && this.price != null) {
@@ -51,7 +51,7 @@ export class ProductDetailsPage implements OnInit {
         title: this.title,
         category: this.category,
         description: this.description,
-        price: this.price.replace('.', '').replace(',', '.'),
+        price: this.price,
         active: true
       };
 
