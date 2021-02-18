@@ -40,9 +40,9 @@ export class ProductDetailsPage implements OnInit {
     window.open(this.information.Website, '_blank');
   }
 
-  getFormattedPrice(price: number) {
-    return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(price);
-  }
+  // getFormattedPrice(price: number) {
+  //   return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(price);
+  // }
 
   editProduct() {
     if (this.title != null && this.category != null && this.description != null && this.price != null) {
