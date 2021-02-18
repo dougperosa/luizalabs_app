@@ -28,7 +28,7 @@ export class ProductDetailsPage implements OnInit {
       this.title = this.information.title;
       this.category = this.information.category;
       this.description = this.information.description;
-      this.price = this.getFormattedPrice(this.information.price);
+      // this.price = this.information.price;
     });
   }
 
