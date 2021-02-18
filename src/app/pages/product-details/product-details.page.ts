@@ -28,7 +28,7 @@ export class ProductDetailsPage implements OnInit {
       this.title = this.information.title;
       this.category = this.information.category;
       this.description = this.information.description;
-      // this.price = this.getFormattedPrice(this.information.price).replace('R$', '');
+      this.price = this.getFormattedPrice(this.information.price).replace('R$', '');
     });
   }
 
@@ -51,7 +51,7 @@ export class ProductDetailsPage implements OnInit {
         title: this.title,
         category: this.category,
         description: this.description,
-        price: this.price,
+        price: this.price.replace('.', '').replace(',', '.'),
         active: true
       };
 
